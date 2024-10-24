@@ -1,0 +1,22 @@
+services:
+  nexus:
+    container_name: nexus
+    image: sonatype/nexus
+    restart: always
+    volumes:
+      - /opt/nexus/nexus-data:/nexus-data
+    environment:
+      - TZ=Africa/Kampala 
+      # Or you can use HV time 
+      #- /etc/localtime:/etc/localtime:ro
+    ports:
+      - "8081:8081" #Web-UI interface
+      - "8123:8123" #API interface for Docker registry
+      - "8085:8085" #Web-UI interface SSL
+
+#    healthcheck:
+#     test: ["CMD", "curl", "-f", "http://localhost:8081/"]
+#      interval: 10s
+#      timeout: 5s
+#      retries: 3
+#      start_period: 240s
